@@ -14,7 +14,13 @@ ax = plt.axes(projection="3d")
 
 start_time = time.time()
 print("Starting...")
-while time.time() - start_time < 20:
+
+ax.set(xlim=(0, 4800), ylim=(0, 4800), zlim=(0, 4800))
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_zlabel("z")
+
+while True:#time.time() - start_time < 20:
     cc=str(ser.readline())
     #print(cc[2:][:-5])
     #print(cc)
@@ -35,19 +41,22 @@ while time.time() - start_time < 20:
         xList.append(xInt)
         yList.append(yInt)
         zList.append(zInt)
+
+        if len(xList)>20:
+            xList.pop(0)
+            yList.pop(0)
+            zList.pop(0)
         
         timeList.append(time.time() - start_time)
+        ax.scatter3D(xList, yList, zList, c=timeList, cmap='hsv')
+        plt.pause(0.05)
         
     except:
         pass
     #print(f"x:{final_xValue} y:{final_yValue} z:{final_zValue}")
 
-print("Plotting...")
-ax.scatter3D(xList, yList, zList, c=timeList, cmap='hsv')
-ax.set(xlim=(0, 4800), ylim=(0, 4800), zlim=(0, 4800))
-ax.set_xlabel("x")
-ax.set_ylabel("y")
-ax.set_zlabel("z")
+
+
 
 time_elapsed = timeList[-1] - timeList[0]
 number_of_items = len(timeList)
