@@ -4,6 +4,7 @@ import os
 
 
 def readCsvFile(file = 'positionAcuracy2.csv'):
+    path = "loggger\\files\\"
     number_list = []
     x_list = []
     y_list = []
@@ -14,7 +15,7 @@ def readCsvFile(file = 'positionAcuracy2.csv'):
     y = 0
     z = 0
 
-    with open(file, newline='') as csvfile:
+    with open(path+file, newline='') as csvfile:
         positionReader = csv.reader(csvfile, delimiter=',')
         for row in positionReader:
             try:
@@ -119,10 +120,11 @@ def plotXY(file, ax):
 
 
 def findFilesByName(fileName):
+    path = "loggger\\files\\"
     fileType = '.csv'
     fileList = []
     fileNumber = 1
-    while os.path.isfile(fileName + str(fileNumber) + fileType):
+    while os.path.isfile(path + fileName + str(fileNumber) + fileType):
             fileList.append(fileName + str(fileNumber) + fileType)
             fileNumber += 1
     return fileList
@@ -147,3 +149,4 @@ def plotMultipleFiles(filename):
 if __name__ == '__main__':
 
     plotMultipleFiles('positionAcuracy')
+    

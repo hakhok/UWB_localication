@@ -46,4 +46,5 @@ def stillPlot():
     plt.ylim(-75, -105)
     plt.show()
 
-movingPlot()
+if __name__ == '__main__':
+    movingPlot()
