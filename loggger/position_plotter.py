@@ -24,7 +24,7 @@ def readCsvFile(file = 'positionAcuracy2.csv'):
                 y = [int(s) for s in row[2].split() if s.lstrip("-").isdigit()][0]
                 z = [int(s) for s in row[3].split() if s.lstrip("-").isdigit()][0]
                 
-                if x != 0 and y != 0 and z != 0:
+                if x != 0 and y != 0 and z != 0 and number > 50:
                     #print(f"number: {number}, distance: {distance}, rssi: {rssi}")
                     number_list.append(number)
                     x_list.append(x)

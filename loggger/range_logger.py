@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 """
+-----------------------------------------------------------------
+This file is based on the Pozyx - ready to range example.
+It has been modified to create a log of the ranges,
+and save these to a csv file.csv
+
+Modified by Håkon Skau Høksnes - UiT Tromsø
+-----------------------------------------------------------------
 The Pozyx ready to range tutorial (c) Pozyx Labs
 Please read the tutorial that accompanies this sketch: https://www.pozyx.io/Documentation/Tutorials/ready_to_range/Python
 

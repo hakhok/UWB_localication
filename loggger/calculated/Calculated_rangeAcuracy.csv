@@ -1,4 +1,4 @@
-Filename,distance-median,rssi-median,distance-average,rssi-average,distance-mean,rssi-mean,distance-std,rssi-std,distance-var,rssi-var
+Filename,distance-median,distance-average,distance-mean,distance-std,distance-var,rssi-median,rssi-average,rssi-mean,rssi-std,rssi-var
 rangeAcuracy1.csv,4724.0,4721.49,4721.49,21.15,447.41,-80.0,-80.02,-80.02,0.29,0.09
 rangeAcuracy2.csv,4728.0,4724.79,4724.79,19.57,382.95,-80.0,-80.07,-80.07,0.25,0.06
 rangeAcuracy3.csv,4726.0,4725.66,4725.66,15.29,233.78,-80.0,-80.1,-80.1,0.3,0.09

@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 """
+-----------------------------------------------------------------
+This file is based on the Pozyx - ready to localize example.
+It has been modified to create a log of the positions calculated,
+and save these to a csv file.csv
+
+Modified by Håkon Skau Høksnes - UiT Tromsø
+-----------------------------------------------------------------
+
 The Pozyx ready to localize tutorial (c) Pozyx Labs
 Please read the tutorial that accompanies this sketch:
 https://www.pozyx.io/Documentation/Tutorials/ready_to_localize/Python
@@ -178,10 +186,18 @@ if __name__ == "__main__":
         osc_udp_client = SimpleUDPClient(ip, network_port)
 
     # necessary data for calibration, change the IDs and coordinates yourself according to your measurement
+    """
+    #Outdoor
     anchors = [DeviceCoordinates(0xd7a, 1, Coordinates(5000, 5000, 500)),
                DeviceCoordinates(0x6834, 1, Coordinates(0, 5000, 2500)),
                DeviceCoordinates(0x684e, 1, Coordinates(5000, 0, 500)),
                DeviceCoordinates(0x684f, 1, Coordinates(0, 0, 500))]
+    """
+    #tekno 2etg gang
+    anchors = [DeviceCoordinates(0xd7a, 1, Coordinates(53, 0, 923)),
+               DeviceCoordinates(0x6834, 1, Coordinates(53, 4453, 2712)),
+               DeviceCoordinates(0x684e, 1, Coordinates(6886, 0, 2362)),
+               DeviceCoordinates(0x684f, 1, Coordinates(6886, 4450, 1017))]
 
     # positioning algorithm to use, other is PozyxConstants.POSITIONING_ALGORITHM_TRACKING
     algorithm = PozyxConstants.POSITIONING_ALGORITHM_UWB_ONLY
@@ -202,7 +218,7 @@ if __name__ == "__main__":
     position_list_z = []
 
     createNewFile = True
-    folder = 'position'
+    folder = 'cooridoor'
     filname = 'Acuracy'
     nextFileNumber = 0
     errors = 0
@@ -211,7 +227,7 @@ if __name__ == "__main__":
         nextFileNumber += 1
         mybool = os.path.isfile(folder + filname + str(nextFileNumber) + '.csv')
 
-    while timeDifference <= 60:
+    while timeDifference <= 20:
         timeDifference = time.time() - startTime
         deviceposition = r.loop()
         position_list_x.append(deviceposition.x)

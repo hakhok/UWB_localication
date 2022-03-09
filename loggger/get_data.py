@@ -34,7 +34,7 @@ def readPositionFile(file):
                 y = [int(s) for s in row[2].split() if s.lstrip("-").isdigit()][0]
                 z = [int(s) for s in row[3].split() if s.lstrip("-").isdigit()][0]
                 
-                if x != 0 and y != 0 and z != 0:
+                if x != 0 and y != 0 and z != 0 and number > 50:
                     number_list.append(number)
                     x_list.append(x)
                     y_list.append(y)
@@ -86,11 +86,10 @@ def makeCalculations(data):
 
 def writePositionCsvFile(dataList, fileName):
     headerList = [
-        "Filename","x-median", "y-median", "z-median", 
-        "x-average", "y-average", "z-average",
-        "x-mean", "y-mean", "z-mean",
-        "x-std", "y-std", "z-std",
-        "x-var", "y-var", "z-var",]
+        "Filename",
+        "x-median", "x-average", "x-mean", "x-std", "x-var",
+        "y-median", "y-average", "y-mean", "y-std", "y-var",
+        "z-median", "z-average", "z-mean", "z-std", "z-var",]
     
     with open("loggger\\calculated\\Calculated_"+fileName+".csv", 'w', newline='') as csvfile:
         dataWriter = csv.writer(csvfile, delimiter=',',
@@ -101,11 +100,8 @@ def writePositionCsvFile(dataList, fileName):
 
 def writeRangeCsvFile(dataList, fileName):
     headerList = [
-        "Filename","distance-median", "rssi-median", 
-        "distance-average", "rssi-average",
-        "distance-mean", "rssi-mean",
-        "distance-std", "rssi-std",
-        "distance-var", "rssi-var"]
+        "Filename","distance-median", "distance-average", "distance-mean", "distance-std","distance-var",
+        "rssi-median", "rssi-average", "rssi-mean", "rssi-std", "rssi-var"]
     
     with open("loggger\\calculated\\Calculated_"+fileName+".csv", 'w', newline='') as csvfile:
         dataWriter = csv.writer(csvfile, delimiter=',',
@@ -122,6 +118,7 @@ def runPositionFiles(fileName):
             thisDataList = []
             thisDataList.append(file)
             fileData = readPositionFile(file)
+            i = 0
             for data in fileData:
                 calculatedData = makeCalculations(data)
                 for calc in calculatedData:
